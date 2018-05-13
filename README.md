@@ -3,7 +3,7 @@ Portofolio project HacktivOverflow
 
 <img src="http://sarahsplace.com.au/wp-content/uploads/2018/02/MADE-WITH-LOVE-800x675.jpg" width="200">
 
-[Look for deployed app (change me)](https://www.google.com)
+[Look for deployed app (change me)](https://hacktiv-overflow.iamsuperpowers.com/)
 
 
 ## Stack-tech :dart:
@@ -19,8 +19,8 @@ Portofolio project HacktivOverflow
 ---
 
 ## RESTful API
-RESTful API todo list apps.
-`https://google.com/`
+RESTful API ecommerce apps.
+`https://api.hacktiv-overflow.iamsuperpowers.com/`
 
 ## Open Endpoints
 
