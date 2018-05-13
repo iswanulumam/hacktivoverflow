@@ -59,6 +59,3 @@ has permissions to access.
 
 * Show Accessible Answer : `GET /api/answer/`
 * Create Answer : `POST /api/answer/`
-* Show An Answer : `GET /api/answer/:id/`
-* Update An Answer : `PATCH /api/answer/:id/`
-* Delete An Answer : `DELETE /api/answer/:id/`
