@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.send({
     status: 'oke',
     data: [],
-    messages: 'enpoint api for hacktiv-overflow app'
+    messages: 'enpoin for hacktiv-overflow app'
   });
 });
 
