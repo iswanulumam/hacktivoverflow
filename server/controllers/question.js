@@ -93,25 +93,21 @@ const QuestionController = {
         message: 'not found',
       });
     }
-    Question.findById(id)
-      .then((question) => {
-        let currentVoters = question.voters;
-          Question.upvote(id, req.user._id)
-            .then((vote) => {
-              res.status(200).send({
-                status: 'oke',
-                data: vote,
-                message: [],
-              });
-            })
-            .catch((e) => {
-              res.status(400).send({
-                status: 'error',
-                data: [],
-                message: e,
-              });          
-            });
+    Question.upvote(id, req.user._id)
+      .then((vote) => {
+        res.status(200).send({
+          status: 'oke',
+          data: vote,
+          message: [],
+        });
       })
+      .catch((e) => {
+        res.status(400).send({
+          status: 'error',
+          data: [],
+          message: e,
+        });          
+      });
   },
 
   downvote(req, res) {
@@ -123,25 +119,21 @@ const QuestionController = {
         message: 'not found',
       });
     }
-    Question.findById(id)
-      .then((question) => {
-        let currentVoters = question.voters;
-          Question.downvote(id, req.user._id)
-            .then((vote) => {
-              res.status(200).send({
-                status: 'oke',
-                data: vote,
-                message: [],
-              });
-            })
-            .catch((e) => {
-              res.status(400).send({
-                status: 'error',
-                data: [],
-                message: e,
-              });          
-            });
+    Question.downvote(id, req.user._id)
+      .then((vote) => {
+        res.status(200).send({
+          status: 'oke',
+          data: vote,
+          message: [],
+        });
       })
+      .catch((e) => {
+        res.status(400).send({
+          status: 'error',
+          data: [],
+          message: e,
+        });          
+      });
   },
 }
 

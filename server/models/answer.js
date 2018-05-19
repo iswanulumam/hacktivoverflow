@@ -15,12 +15,21 @@ const answerSchema = new Schema({
   _question: {
     type: Schema.Types.ObjectId, ref: 'Question',
   },
-  upvoters: {
-    type: Schema.Types.ObjectId, ref: 'Question',
-  },
-  downvoters: {
-    type: Schema.Types.ObjectId,  ref: 'Question',
-  },
+  voters: [{
+    type: Schema.Types.ObjectId, ref: 'User',
+    require: true,
+    unique : true,
+  }],
+  upvote: [{
+    type: Schema.Types.ObjectId, ref: 'User',
+    unique : true,
+    require: true
+  }],
+  downvote: [{
+    type: Schema.Types.ObjectId, ref: 'User',
+    unique : true,
+    require: true
+  }],
 }, {
   timestamps: true
 });

@@ -70,7 +70,6 @@ questionSchema.statics.downvote = function(questionId, voterId) {
   })
 }
 
-
 const Question = mongoose.model('Question', questionSchema);
 
 module.exports = { Question };
