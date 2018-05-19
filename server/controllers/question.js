@@ -96,13 +96,6 @@ const QuestionController = {
     Question.findById(id)
       .then((question) => {
         let currentVoters = question.voters;
-        if (duplicate(currentVoters, req.user._id)) {
-          res.status(400).send({
-            status: 'error',
-            data: [],
-            message: 'duplicate votes',
-          });
-        } else {
           Question.upvote(id, req.user._id)
             .then((vote) => {
               res.status(200).send({
@@ -115,10 +108,39 @@ const QuestionController = {
               res.status(400).send({
                 status: 'error',
                 data: [],
-                message: e.message,
+                message: e,
               });          
             });
-        }
+      })
+  },
+
+  downvote(req, res) {
+    const id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+      return res.status(404).send({
+        status: 'error',
+        data: [],
+        message: 'not found',
+      });
+    }
+    Question.findById(id)
+      .then((question) => {
+        let currentVoters = question.voters;
+          Question.downvote(id, req.user._id)
+            .then((vote) => {
+              res.status(200).send({
+                status: 'oke',
+                data: vote,
+                message: [],
+              });
+            })
+            .catch((e) => {
+              res.status(400).send({
+                status: 'error',
+                data: [],
+                message: e,
+              });          
+            });
       })
   },
 }
