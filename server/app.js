@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 
+/** check env var */
+console.log('check env var', process.env.MONGODB_URI);
+
 var { mongoose } = require('./lib/connection');
 var index = require('./routes/index');
 var users = require('./routes/users');
