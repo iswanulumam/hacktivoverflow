@@ -16,26 +16,35 @@ const questionSchema = new Schema({
       type: Schema.Types.ObjectId, ref: 'Answer',
       required: true,
   }],
-  upvoters: {
+  voters: [{
     type: Schema.Types.ObjectId, ref: 'User',
-  },
-  downvoters: {
+    require: true,
+    unique : true,
+  }],
+  upvote: [{
     type: Schema.Types.ObjectId, ref: 'User',
-  },
+    unique : true,
+    require: true
+  }],
+  downvote: [{
+    type: Schema.Types.ObjectId, ref: 'User',
+    unique : true,
+    require: true
+  }],
 }, {
   timestamps: true
 });
 
-// questionSchema.statics.addAnswer = function(questionId, answerId) {
-//   let questions = this;
-//   questions.findById(questionId).then((question) => {
-//     question.push({ answerId });
-//     return question.save();
-//   })
-// }
+questionSchema.statics.upvote = function(questionId, voterId) {
+  let Question = this;
+  return Question.findById(questionId)
+  .then(question => {
+    question.voters.push(voterId);
+    question.upvote.push(voterId);
+    return question.save();
+  })
+}
 
 const Question = mongoose.model('Question', questionSchema);
 
 module.exports = { Question };
-
-// Image.find().populate('userId', 'username')
