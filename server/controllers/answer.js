@@ -32,6 +32,60 @@ const AnswerController = {
       });
     });
   },
+
+  upvote(req, res) {
+    const answerId = req.params.answer_id;
+    if (!ObjectID.isValid(answerId)) {
+      return res.status(404).send({
+        status: 'error',
+        data: [],
+        message: 'not found',
+      });
+    }
+    let votersId = req.user._id;
+    Answer.upvote(answerId, votersId)
+      .then((vote) => {
+        res.status(200).send({
+          status: 'oke',
+          data: vote,
+          message: [],
+        });
+      })
+      .catch((e) => {
+        res.status(400).send({
+          status: 'error!',
+          data: [],
+          message: e,
+        });          
+      });
+  },
+
+  downvote(req, res) {
+    const answerId = req.params.answer_id;
+    if (!ObjectID.isValid(answerId)) {
+      return res.status(404).send({
+        status: 'error',
+        data: [],
+        message: 'not found',
+      });
+    }
+    let votersId = req.user._id;
+    Answer.downvote(answerId, votersId)
+      .then((vote) => {
+        res.status(200).send({
+          status: 'oke',
+          data: vote,
+          message: [],
+        });
+      })
+      .catch((e) => {
+        res.status(400).send({
+          status: 'error!',
+          data: [],
+          message: e,
+        });          
+      });
+  },
 }
 
 module.exports = AnswerController;

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { duplicate } = require('./../lib/duplicate');
 const Schema = mongoose.Schema;
 
 const answerSchema = new Schema({
@@ -30,6 +31,40 @@ const answerSchema = new Schema({
 }, {
   timestamps: true
 });
+
+answerSchema.statics.upvote = function(answerId, voterId) {
+  let Answer = this;
+  return Answer.findById(answerId)
+    .then(answer => {
+      if (answer._creator.toHexString() == voterId) {
+        return Promise.reject(`You can't vote your own answer`);
+      }
+      let currentVoters = answer.voters_answer;
+      if (duplicate(currentVoters, voterId)) {
+        return Promise.reject('You have finished vote!');
+      }
+      answer.voters_answer.push(voterId);
+      answer.upvote_answer.push(voterId);
+      return answer.save();
+  })
+}
+
+answerSchema.statics.downvote = function(answerId, voterId) {
+  let Answer = this;
+  return Answer.findById(answerId)
+    .then(answer => {
+      if (answer._creator.toHexString() == voterId) {
+        return Promise.reject(`You can't vote your own answer`);
+      }
+      let currentVoters = answer.voters_answer;
+      if (duplicate(currentVoters, voterId)) {
+        return Promise.reject('You have finished vote!');
+      }
+      answer.voters_answer.push(voterId);
+      answer.downvote_answer.push(voterId);
+      return answer.save();
+  })
+}
 
 const Answer = mongoose.model('Answer', answerSchema);
 
