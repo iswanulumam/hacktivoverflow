@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 const { Question } = require('./../models/question');
-const _ = require('lodash');
 const { duplicate } = require('./../lib/duplicate');
+const _ = require('lodash');
 
 const QuestionController = {
   create(req, res) {
@@ -132,7 +132,7 @@ const QuestionController = {
           status: 'error',
           data: [],
           message: e,
-        });          
+        });  
       });
   },
 }

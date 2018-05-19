@@ -9,7 +9,7 @@ router.post('/', authenticate, QuestionController.create);
 router.get('/', QuestionController.find);
 router.get('/:id', QuestionController.findOne);
 router.post('/:id/upvote', authenticate, QuestionController.upvote);
-router.post('/answers', authenticate, )
+router.post('/:id/downvote', authenticate, QuestionController.downvote);
 
 // @ answer controller
 router.post('/:question_id/answers', authenticate, AnswerController.create);

@@ -70,6 +70,15 @@ questionSchema.statics.downvote = function(questionId, voterId) {
   })
 }
 
+questionSchema.statics.addAnswer = function(questionId, answerId) {
+  let Question = this;
+  return Question.findById(questionId)
+    .then(question => {
+      question.answers.push(answerId);
+      return question.save();
+    })
+}
+
 const Question = mongoose.model('Question', questionSchema);
 
 module.exports = { Question };

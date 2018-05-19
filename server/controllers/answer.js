@@ -12,7 +12,25 @@ const AnswerController = {
       _question: questionId,
       _creator: req.user._id,
     });
-    res.send(answer);
+    answer.save().then((result) => {
+      let newAnswerId = result._id.toHexString();
+      return newAnswerId;
+    }).then((answerId) => {
+      return Question.addAnswer(questionId, answerId);
+    }).then((resultAnswer) => {
+      res.status(200).send({
+        status: 'oke',
+        data: resultAnswer,
+        message: [],
+      });
+    })
+    .catch((e) => {
+      res.status(400).send({
+        status: 'error!',
+        data: [],
+        message: e,
+      });
+    });
   },
 }
 
