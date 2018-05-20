@@ -20,16 +20,13 @@ const questionSchema = new Schema({
   voters: [{
     type: Schema.Types.ObjectId, ref: 'User',
     require: true,
-    unique : true,
   }],
   upvote: [{
     type: Schema.Types.ObjectId, ref: 'User',
-    unique : true,
     require: true
   }],
   downvote: [{
     type: Schema.Types.ObjectId, ref: 'User',
-    unique : true,
     require: true
   }],
 }, {
