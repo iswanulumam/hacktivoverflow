@@ -6,9 +6,9 @@
         </router-link>
         <router-link to="/">Home</router-link>
         <router-link to="/newquestion">Question</router-link>
-        <router-link to="/newanswer">Answer</router-link>
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
+        <a @click="logout">Logout</a>
         <router-link class="github" to="/">HacktivOverflow</router-link>
       </nav>
     </header>
@@ -17,6 +17,17 @@
     </transition>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout: function () {
+      localStorage.removeItem('overflow')
+      this.$router.push({ name: 'login' })
+    }
+  }
+}
+</script>
 
 <style>
 body {

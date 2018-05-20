@@ -1,47 +1,36 @@
 <template>
   <div>
     <br>
-    <div class="news-item">
+    <div class="news-item" v-if="question">
+      <span class="score">{{ question.upvote.length - question.downvote.length }}</span>
       <span class="title">
-        What is your name ?
+        {{ question.text }}
       </span>
       <br>
       <span class="meta">
-        <span>
-          By: Iswanul Umam
+        <span v-if="question.voters.length">
+          Total vote: {{ question.voters.length }} -
         </span>
-        <button>New Answer</button>
+        <span>
+          Question by: {{ question._creator.username }}
+        </span>
+        <router-link :to="{ name: 'answer', params: { id: question._id }}">Make Answer</router-link>
       </span>
       <br>
     </div>
     <br>
-
-    <li class="news-item">
-      <span class="score">8</span>
+    <li class="news-item" v-for="answer of answers" :key="answer._id">
+      <span class="score">{{ answer.upvote_answer.length - answer.downvote_answer.length }}</span>
       <span class="title">
-        What is your name ?
+        {{ answer.text }}
       </span>
       <br>
       <span class="meta">
         <span>
-          By: Iswanul Umam
+          By: {{ answer._creator.username }}
         </span>
-        <button><span>upvote</span></button>
-        <button><span>downvote</span></button>
-      </span>
-    </li>
-    <li class="news-item">
-      <span class="score">8</span>
-      <span class="title">
-        What is your name ?
-      </span>
-      <br>
-      <span class="meta">
-        <span>
-          By: Iswanul Umam
-        </span>
-        <button><span>upvote</span></button>
-        <button><span>downvote</span></button>
+        <button @click="upvoteAnswer(answer._id)"><span>upvote ({{ answer.upvote_answer.length }})</span></button>
+        <button @click="downvoteAnser(answer._id)"><span>downvote ({{ answer.downvote_answer.length }})</span></button>
       </span>
     </li>
   </div>
@@ -49,11 +38,46 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import swal from 'sweetalert'
 
 export default {
-  name: 'question detail',
-  components: {
-
+  name: 'questionDetail',
+  computed: {
+    question () {
+      return this.$store.state.questions_one
+    },
+    answers () {
+      return this.$store.state.questions_one.answers
+    }
+  },
+  beforeCreate: function () {
+    let questionId = this.$route.params.id
+    this.$store.dispatch('getQuestionsById', questionId)
+  },
+  methods: {
+    upvoteAnswer: function (answerId) {
+      let token = localStorage.getItem('overflow')
+      axios.post(`http://localhost:3000/api/questions/answers/${answerId}/upvote`, {}, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('success upvote answer!')
+          this.$store.dispatch('getQuestionsById', answerId)
+        })
+        .catch((e) => {
+          swal('Messages', e.response.data.message)
+        })
+    },
+    downvoteAnser: function (answerId) {
+      let token = localStorage.getItem('overflow')
+      axios.post(`http://localhost:3000/api/questions/answers/${answerId}/downvote`, {}, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('success downvote answer!')
+          this.$store.dispatch('getQuestionsById', answerId)
+        })
+        .catch((e) => {
+          swal('Messages', e.response.data.message)
+        })
+    }
   }
 }
 </script>

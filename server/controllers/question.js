@@ -62,7 +62,16 @@ const QuestionController = {
     }
     Question.findOne({
       _id: id
-    }).then((question) => {
+    })
+    .populate('_creator', 'username')
+    .populate({
+      path: 'answers',
+      populate: {
+        path: '_creator',
+        select: 'username'
+      },
+    })
+    .then((question) => {
       if (!question) {
         return res.status(404).send({
           status: 'error',

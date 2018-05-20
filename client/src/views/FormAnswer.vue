@@ -7,9 +7,9 @@
       </span>
       <div>
         <label>Answer</label>
-        <input type="text">
+        <input type="text" v-model="text">
       </div>
-      <button class="button">Add Answer</button>
+      <button class="button" @click="postAnswer($route.params.id)">Add Answer</button>
       <br>
     </div>
   </div>
@@ -17,11 +17,36 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import swal from 'sweetalert'
 
 export default {
-  name: 'home',
-  components: {
-
+  name: 'FormAnswer',
+  data () {
+    return {
+      text: ''
+    }
+  },
+  created () {
+    let token = localStorage.getItem('overflow')
+    if (!token) {
+      this.$router.push({ name: 'login' })
+    }
+  },
+  methods: {
+    postAnswer: function (questionsId) {
+      let token = localStorage.getItem('overflow')
+      let payload = {
+        text: this.text
+      }
+      axios.post(`http://localhost:3000/api/questions/${questionsId}/answers`, payload, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('Horrey', 'Answer created!')
+          this.$router.push({ name: 'detail', params: { id: questionsId } })
+        }).catch((e) => {
+          swal('Oopss', e.response.data.message)
+        })
+    }
   }
 }
 </script>

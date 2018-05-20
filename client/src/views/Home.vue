@@ -3,8 +3,9 @@
     <br>
     <li class="news-item" v-for="question of questions" :key="question._id">
       <span class="score">{{ question.upvote.length - question.downvote.length }}</span>
+
       <span class="title">
-        {{ question.text }}
+        <router-link :to="{ name: 'detail', params: { id: question._id }}">{{ question.text }}</router-link>
       </span>
       <br>
       <span class="meta">

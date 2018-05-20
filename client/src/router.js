@@ -22,12 +22,12 @@ export default new Router({
       component: FormQuestion
     },
     {
-      path: '/newanswer',
-      name: 'newanswer',
+      path: '/answer/:id',
+      name: 'answer',
       component: FormAnswer
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'detail',
       component: QuestionDetail
     },
