@@ -39,13 +39,14 @@ export default {
       let payload = {
         text: this.text
       }
-      // console.log(payload, token)
       axios.post(`http://localhost:3000/api/questions`, payload, { headers: { 'x-auth': token } })
         .then(() => {
           swal('Horrey', 'Question created!')
           this.$router.push({ name: 'home' })
         }).catch((e) => {
-          swal('Oopss', 'Something wrong!')
+          let errMes = e.response.data.message.toString()
+          console.log(errMes)
+          swal('Oopss', errMes)
         })
     }
   }

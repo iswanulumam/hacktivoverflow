@@ -8,8 +8,8 @@
       </span>
       <br>
       <span class="meta">
-        <button @click="upvote(question._id)"><span>upvote</span></button>
-        <button><span>downvote</span></button>
+        <button @click="upvote(question._id)"><span>upvote ({{ question.upvote.length }})</span></button>
+        <button @click="downvote(question._id)"><span>downvote ({{ question.downvote.length }})</span></button>
         <span>
           Total vote: {{ question.voters.length }}
         </span>
@@ -40,11 +40,24 @@ export default {
   methods: {
     upvote: function (questionId) {
       let token = localStorage.getItem('overflow')
-      axios.post(`http://localhost:3000/api/questions/${questionId}/upvote`, { headers: { 'x-auth': token } })
+      axios.post(`http://localhost:3000/api/questions/${questionId}/upvote`, {}, { headers: { 'x-auth': token } })
         .then(() => {
-          swal('Horrey', 'You vote questions!')
-        }).catch((e) => {
-          swal('Oopss', 'Something wrong!')
+          swal('success upvote!')
+          this.$store.dispatch('getQuestions')
+        })
+        .catch((e) => {
+          swal('error', e.response.data.message)
+        })
+    },
+    downvote: function (questionId) {
+      let token = localStorage.getItem('overflow')
+      axios.post(`http://localhost:3000/api/questions/${questionId}/downvote`, {}, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('success downvote!')
+          this.$store.dispatch('getQuestions')
+        })
+        .catch((e) => {
+          swal('error', e.response.data.message)
         })
     }
   }

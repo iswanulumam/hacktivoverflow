@@ -12,8 +12,8 @@ router.post('/:id/upvote', authenticate, QuestionController.upvote);
 router.post('/:id/downvote', authenticate, QuestionController.downvote);
 
 // @ answer router
-router.post('/:question_id/answers', authenticate, AnswerController.create);
-router.post('/answers/:answer_id/upvote', authenticate, AnswerController.upvote);
-router.post('/answers/:answer_id/downvote', authenticate, AnswerController.downvote);
+// router.post('/:question_id/answers', authenticate, AnswerController.create);
+// router.post('/answers/:answer_id/upvote', authenticate, AnswerController.upvote);
+// router.post('/answers/:answer_id/downvote', authenticate, AnswerController.downvote);
 
 module.exports = router;
