@@ -8,7 +8,7 @@
       </span>
       <br>
       <span class="meta">
-        <button><span>upvote</span></button>
+        <button @click="upvote(question._id)"><span>upvote</span></button>
         <button><span>downvote</span></button>
         <span>
           Total vote: {{ question.voters.length }}
@@ -24,6 +24,8 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import swal from 'sweetalert'
 
 export default {
   name: 'home',
@@ -34,6 +36,17 @@ export default {
   },
   created: function () {
     this.$store.dispatch('getQuestions')
+  },
+  methods: {
+    upvote: function (questionId) {
+      let token = localStorage.getItem('overflow')
+      axios.post(`http://localhost:3000/api/questions/${questionId}/upvote`, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('Horrey', 'You vote questions!')
+        }).catch((e) => {
+          swal('Oopss', 'Something wrong!')
+        })
+    }
   }
 }
 </script>
