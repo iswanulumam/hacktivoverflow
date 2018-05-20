@@ -1,6 +1,21 @@
 <template>
   <div>
     <br>
+    <div class="news-item">
+      <span class="title">
+        What is your name ?
+      </span>
+      <br>
+      <span class="meta">
+        <span>
+          By: Iswanul Umam
+        </span>
+        <button>New Answer</button>
+      </span>
+      <br>
+    </div>
+    <br>
+
     <li class="news-item">
       <span class="score">8</span>
       <span class="title">
@@ -36,7 +51,7 @@
 // @ is an alias to /src
 
 export default {
-  name: 'home',
+  name: 'question detail',
   components: {
 
   }
