@@ -7,12 +7,9 @@
         <router-link to="/">Home</router-link>
         <router-link to="/newquestion">Question</router-link>
         <router-link to="/newanswer">Answer</router-link>
-        <router-link to="/detail">Detail</router-link>
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
-        <a class="github" href="" rel="noopener">
-          HacktivOverflow
-        </a>
+        <router-link class="github" to="/">HacktivOverflow</router-link>
       </nav>
     </header>
     <transition name="fade" mode="out-in">

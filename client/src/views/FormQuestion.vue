@@ -7,9 +7,9 @@
       </span>
       <div>
         <label>New Question</label>
-        <input type="text">
+        <input type="text" v-model="text">
       </div>
-      <button class="button">Add Question</button>
+      <button class="button" @click="postQuestion">Add Question</button>
       <br>
     </div>
   </div>
@@ -17,11 +17,37 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import swal from 'sweetalert'
 
 export default {
-  name: 'home',
-  components: {
-
+  name: 'FormQuestion',
+  data () {
+    return {
+      text: ''
+    }
+  },
+  created () {
+    let token = localStorage.getItem('overflow')
+    if (!token) {
+      this.$router.push({ name: 'login' })
+    }
+  },
+  methods: {
+    postQuestion: function () {
+      let token = localStorage.getItem('overflow')
+      let payload = {
+        text: this.text
+      }
+      // console.log(payload, token)
+      axios.post(`http://localhost:3000/api/questions`, payload, { headers: { 'x-auth': token } })
+        .then(() => {
+          swal('Horrey', 'Question created!')
+          this.$router.push({ name: 'home' })
+        }).catch((e) => {
+          swal('Oopss', 'Something wrong!')
+        })
+    }
   }
 }
 </script>

@@ -1,32 +1,22 @@
 <template>
   <div>
     <br>
-    <li class="news-item">
-      <span class="score">8</span>
+    <li class="news-item" v-for="question of questions" :key="question._id">
+      <span class="score">{{ question.upvote.length - question.downvote.length }}</span>
       <span class="title">
-        What is your name ?
+        {{ question.text }}
       </span>
       <br>
       <span class="meta">
-        <span>
-          By: Iswanul Umam
-        </span>
         <button><span>upvote</span></button>
         <button><span>downvote</span></button>
-      </span>
-    </li>
-    <li class="news-item">
-      <span class="score">8</span>
-      <span class="title">
-        What is your name ?
-      </span>
-      <br>
-      <span class="meta">
         <span>
-          By: Iswanul Umam
+          Total vote: {{ question.voters.length }}
         </span>
-        <button><span>upvote</span></button>
-        <button><span>downvote</span></button>
+        -
+        <span>
+          Question by: {{ question._creator.username }}
+        </span>
       </span>
     </li>
   </div>
@@ -37,8 +27,13 @@
 
 export default {
   name: 'home',
-  components: {
-
+  computed: {
+    questions () {
+      return this.$store.state.questions
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getQuestions')
   }
 }
 </script>

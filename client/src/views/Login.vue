@@ -7,11 +7,11 @@
       </span>
       <div>
         <label>Email</label>
-        <input type="text">
+        <input type="text" placeholder="E-mail address" v-model="email">
         <label>Password</label>
-        <input type="text">
+        <input type="password" placeholder="Password" v-model="password">
       </div>
-      <button class="button">Login</button>
+      <button class="button" @click="login">Login</button>
       <br>
     </div>
   </div>
@@ -20,12 +20,43 @@
 <script>
 // @ is an alias to /src
 
-export default {
-  name: 'home',
-  components: {
+import axios from 'axios'
+import swal from 'sweetalert'
 
+export default {
+  name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: '',
+      token: ''
+    }
+  },
+  created () {
+    let token = localStorage.getItem('overflow')
+    if (token) {
+      this.$router.push({ name: 'home' })
+    }
+  },
+  methods: {
+    login: function () {
+      let payload = {
+        email: this.email,
+        password: this.password
+      }
+      axios.post('http://localhost:3000/api/users/login', payload)
+        .then(response => {
+          this.token = response.data.data.tokens[0].token
+          localStorage.setItem('overflow', this.token)
+          this.$router.push({ name: 'home' })
+        })
+        .catch(() => {
+          swal('Oops!', 'Something went wrong!')
+        })
+    }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -48,7 +79,20 @@ input[type=text] {
   transition: 0.5s;
   outline: none;
 }
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
 input[type=text]:focus {
+  border: 3px solid #555;
+}
+input[type=password]:focus {
   border: 3px solid #555;
 }
 .button {

@@ -16,17 +16,43 @@
       <button class="button">Register</button>
       <br>
     </div>
-    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import swal from 'sweetalert'
 
 export default {
-  name: 'home',
-  components: {
-
+  name: 'register',
+  data () {
+    return {
+      username: '',
+      email: '',
+      password: ''
+    }
+  },
+  created () {
+    let token = localStorage.getItem('overflow')
+    if (token) {
+      this.$router.push({ name: 'login' })
+    }
+  },
+  methods: {
+    register: function () {
+      let payload = {
+        username: this.username,
+        email: this.email,
+        password: this.password
+      }
+      axios.post('http://localhost:3000/api/users/register', payload)
+        .then(() => {
+          this.$router.push({ name: 'login' })
+        }).catch(() => {
+          swal('Oops!', 'Something went wrong!')
+        })
+    }
   }
 }
 </script>
