@@ -52,6 +52,7 @@ has permissions to access.
 * Show An Question : `GET /api/question/:id/`
 * Update An Question : `PATCH /api/question/:id/`
 * Delete An Question : `DELETE /api/question/:id/`
+* Upvote and Downvote Question
 
 ### Answer related
 
@@ -60,3 +61,4 @@ has permissions to access.
 
 * Show Accessible Answer : `GET /api/answer/`
 * Create Answer : `POST /api/answer/`
+* Upvote and Downvote Answer
