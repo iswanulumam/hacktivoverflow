@@ -1,15 +1,17 @@
 # HacktivOverflow
 Portofolio project HacktivOverflow
 
-<img src="http://sarahsplace.com.au/wp-content/uploads/2018/02/MADE-WITH-LOVE-800x675.jpg" width="200">
+[LINK DEPLOY](https://hacktivoverflow.iamsuperpowers.com)
 
-[LINK DEPLOY](http://hacktivoverflow.iamsuperpowers.com)
+<img src="http://sarahsplace.com.au/wp-content/uploads/2018/02/MADE-WITH-LOVE-800x675.jpg" width="200">
 
 ## Stack-tech :dart:
 
 ### back-end :wrench:
 - [x] RESTful API Using Expressjs, MongoDB (M-Lab), Mongoose
-- [x] GCP Server & Cloud
+- [x] GCP for service api
+- [x] Firebase client hosting
+- [ ] Cron scheduler to send report in Telegram Group (using telegram-bot-api)
 
 ### front-end :art:
 - [x] Bootstrap
