@@ -3,7 +3,7 @@ Portofolio project HacktivOverflow
 
 <img src="http://sarahsplace.com.au/wp-content/uploads/2018/02/MADE-WITH-LOVE-800x675.jpg" width="200">
 
-[Look for deployed app)](http://hacktivoverflow.iamsuperpowers.com)
+[LINK DEPLOY](http://hacktivoverflow.iamsuperpowers.com)
 
 ## Stack-tech :dart:
 
