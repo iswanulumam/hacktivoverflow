@@ -4,7 +4,6 @@ const axios = require('axios')
 const QuestionHasNoAnswerYet = require('./lib/question')
 const channel = require('./lib/telegram')
 
-
 const baseUrl = `http://api.hacktivoverflow.iamsuperpowers.com`
 
 const config = {
