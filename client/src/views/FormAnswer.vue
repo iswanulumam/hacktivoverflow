@@ -20,7 +20,7 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
-const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+const baseUrl = 'https://api.hacktivoverflow.iamsuperpowers.com'
 
 export default {
   name: 'FormAnswer',

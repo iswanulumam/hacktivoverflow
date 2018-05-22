@@ -20,7 +20,7 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
-const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+const baseUrl = 'https://api.hacktivoverflow.iamsuperpowers.com'
 
 export default {
   name: 'FormQuestion',
@@ -46,9 +46,9 @@ export default {
           swal('Horrey', 'Question created!')
           this.$router.push({ name: 'home' })
         }).catch((e) => {
-          let errMes = e.response.data.message.toString()
-          console.log(errMes)
-          swal('Oopss', errMes)
+          // let errMes = e.response.data.message.toString()
+          // console.log(errMes)
+          swal('Oopss', e.response.data.message, 'error')
         })
     }
   }

@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 
 Vue.use(Vuex)
 
-const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+const baseUrl = 'https://api.hacktivoverflow.iamsuperpowers.com'
 
 export default new Vuex.Store({
   state: {
