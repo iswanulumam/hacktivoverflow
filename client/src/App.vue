@@ -5,10 +5,10 @@
         <router-link to="/" exact>
         </router-link>
         <router-link to="/">Home</router-link>
-        <router-link to="/newquestion">Question</router-link>
+        <router-link to="/newquestion">New Question</router-link>
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
-        <a @click="logout">Logout</a>
+        <a href="" @click="logout">Logout</a>
         <router-link class="github" to="/">HacktivOverflow</router-link>
       </nav>
     </header>

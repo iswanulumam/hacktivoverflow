@@ -20,6 +20,8 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
+const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+
 export default {
   name: 'FormAnswer',
   data () {
@@ -39,7 +41,7 @@ export default {
       let payload = {
         text: this.text
       }
-      axios.post(`http://localhost:3000/api/questions/${questionsId}/answers`, payload, { headers: { 'x-auth': token } })
+      axios.post(`${baseUrl}/api/questions/${questionsId}/answers`, payload, { headers: { 'x-auth': token } })
         .then(() => {
           swal('Horrey', 'Answer created!')
           this.$router.push({ name: 'detail', params: { id: questionsId } })

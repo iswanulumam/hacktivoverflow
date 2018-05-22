@@ -24,6 +24,8 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
+const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+
 export default {
   name: 'register',
   data () {
@@ -36,7 +38,7 @@ export default {
   created () {
     let token = localStorage.getItem('overflow')
     if (token) {
-      this.$router.push({ name: 'login' })
+      this.$router.push({ name: 'home' })
     }
   },
   methods: {
@@ -46,7 +48,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      axios.post('http://localhost:3000/api/users/register', payload)
+      axios.post(`${baseUrl}/api/users/register`, payload)
         .then(() => {
           this.$router.push({ name: 'login' })
         }).catch(() => {

@@ -41,6 +41,8 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
+const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+
 export default {
   name: 'questionDetail',
   computed: {
@@ -58,7 +60,7 @@ export default {
   methods: {
     upvoteAnswer: function (answerId) {
       let token = localStorage.getItem('overflow')
-      axios.post(`http://localhost:3000/api/questions/answers/${answerId}/upvote`, {}, { headers: { 'x-auth': token } })
+      axios.post(`${baseUrl}/api/questions/answers/${answerId}/upvote`, {}, { headers: { 'x-auth': token } })
         .then(() => {
           swal('success upvote answer!')
           this.$store.dispatch('getQuestionsById', answerId)
@@ -69,7 +71,7 @@ export default {
     },
     downvoteAnser: function (answerId) {
       let token = localStorage.getItem('overflow')
-      axios.post(`http://localhost:3000/api/questions/answers/${answerId}/downvote`, {}, { headers: { 'x-auth': token } })
+      axios.post(`${baseUrl}/api/questions/answers/${answerId}/downvote`, {}, { headers: { 'x-auth': token } })
         .then(() => {
           swal('success downvote answer!')
           this.$store.dispatch('getQuestionsById', answerId)

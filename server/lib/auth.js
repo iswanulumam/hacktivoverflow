@@ -12,7 +12,7 @@ const authenticate = (req, res, next) => {
       res.status(401).send({
         status: 'unauthorized',
         data: [],
-        message: 'permission denied',
+        message: 'permission denied, please login first!',
       });
     })
 }
@@ -30,7 +30,7 @@ const authorization = (req, res, next) => {
     res.status(401).send({
       status: 'unauthorized',
       data: [],
-      message: 'permission denied',
+      message: 'permission denied, please login first!',
     });
   })
 }

@@ -28,6 +28,8 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
+const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+
 export default {
   name: 'home',
   computed: {
@@ -41,24 +43,26 @@ export default {
   methods: {
     upvote: function (questionId) {
       let token = localStorage.getItem('overflow')
-      axios.post(`http://localhost:3000/api/questions/${questionId}/upvote`, {}, { headers: { 'x-auth': token } })
+      axios.post(`${baseUrl}/api/questions/${questionId}/upvote`, {}, { headers: { 'x-auth': token } })
         .then(() => {
           swal('success upvote!')
           this.$store.dispatch('getQuestions')
         })
         .catch((e) => {
-          swal('error', e.response.data.message)
+          // swal('error', e.response.data.message)
+          swal('Error', e.response.data.message, 'error')
         })
     },
     downvote: function (questionId) {
       let token = localStorage.getItem('overflow')
-      axios.post(`http://localhost:3000/api/questions/${questionId}/downvote`, {}, { headers: { 'x-auth': token } })
+      axios.post(`${baseUrl}/api/questions/${questionId}/downvote`, {}, { headers: { 'x-auth': token } })
         .then(() => {
           swal('success downvote!')
           this.$store.dispatch('getQuestions')
         })
         .catch((e) => {
-          swal('error', e.response.data.message)
+          // swal('error', e.response.data.message)
+          swal('Error', e.response.data.message, 'error')
         })
     }
   }

@@ -23,6 +23,8 @@
 import axios from 'axios'
 import swal from 'sweetalert'
 
+const baseUrl = 'http://api.hacktivoverflow.iamsuperpowers.com'
+
 export default {
   name: 'Login',
   data () {
@@ -44,7 +46,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      axios.post('http://localhost:3000/api/users/login', payload)
+      axios.post(`${baseUrl}/api/users/login`, payload)
         .then(response => {
           this.token = response.data.data.tokens[0].token
           localStorage.setItem('overflow', this.token)
