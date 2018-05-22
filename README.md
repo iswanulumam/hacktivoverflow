@@ -20,8 +20,8 @@ Portofolio project HacktivOverflow
 ---
 
 ## RESTful API
-[RESTful API hacktivoverflow](http://api.hacktivoverflow.iamsuperpowers.com/)
-`http://api.hacktivoverflow.iamsuperpowers.com/`
+[RESTful API hacktivoverflow](https://api.hacktivoverflow.iamsuperpowers.com/)
+`https://api.hacktivoverflow.iamsuperpowers.com/`
 
 ## Open Endpoints
 
