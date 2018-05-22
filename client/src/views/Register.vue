@@ -7,13 +7,13 @@
       </span>
       <div>
         <label>Username</label>
-        <input type="text">
+        <input type="text" placeholder="E-mail address" v-model="username">
         <label>Email</label>
-        <input type="text">
+        <input type="text" placeholder="E-mail address" v-model="email">
         <label>Password</label>
-        <input type="text">
+        <input type="password" placeholder="E-mail address" v-model="password">
       </div>
-      <button class="button">Register</button>
+      <button class="button" @click="register">Register</button>
       <br>
     </div>
   </div>
@@ -50,9 +50,10 @@ export default {
       }
       axios.post(`${baseUrl}/api/users/register`, payload)
         .then(() => {
+          swal('Hore!', 'success register', 'success')
           this.$router.push({ name: 'login' })
-        }).catch(() => {
-          swal('Oops!', 'Something went wrong!')
+        }).catch((e) => {
+          swal('Oops!', e.response.data.message, 'error')
         })
     }
   }

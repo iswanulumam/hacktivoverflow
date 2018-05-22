@@ -8,7 +8,7 @@
         <router-link to="/newquestion">New Question</router-link>
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
-        <a href="" @click="logout">Logout</a>
+        <a @click="logout">Logout</a>
         <router-link class="github" to="/">HacktivOverflow</router-link>
       </nav>
     </header>
@@ -19,11 +19,19 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
+
 export default {
   methods: {
     logout: function () {
-      localStorage.removeItem('overflow')
-      this.$router.push({ name: 'login' })
+      let token = localStorage.getItem('overflow')
+      if (token) {
+        localStorage.removeItem('overflow')
+        swal('Info!', 'Logout success', 'success')
+      } else {
+        swal('Info!', 'Login first to logout', 'info')
+        // this.$router.push({ name: 'login' })
+      }
     }
   }
 }

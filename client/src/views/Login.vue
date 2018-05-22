@@ -48,12 +48,13 @@ export default {
       }
       axios.post(`${baseUrl}/api/users/login`, payload)
         .then(response => {
+          swal('Hore!', 'success login', 'success')
           this.token = response.data.data.tokens[0].token
           localStorage.setItem('overflow', this.token)
           this.$router.push({ name: 'home' })
         })
-        .catch(() => {
-          swal('Oops!', 'Something went wrong!')
+        .catch((e) => {
+          swal('Opps!', e.response.data.message, 'error')
         })
     }
   }
