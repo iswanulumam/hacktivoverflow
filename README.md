@@ -9,7 +9,7 @@ Portofolio project HacktivOverflow
 - [x] RESTful API Using Expressjs, MongoDB (M-Lab), Mongoose
 - [x] GCP for service api
 - [x] Firebase client hosting
-- [x] Cron scheduler to send report in Telegram Group (using telegram-bot-api)
+- [x] Backgroud job (Cron) to send notif to Telegram Group (using telegram-bot-api) if any question has no snswer yet
 
 <img src="https://i.imgur.com/ykXplqv.png" width="500">
 
