@@ -7,11 +7,11 @@
       </span>
       <div>
         <label>Username</label>
-        <input type="text" placeholder="E-mail address" v-model="username">
+        <input type="text" placeholder="username" v-model="username">
         <label>Email</label>
-        <input type="text" placeholder="E-mail address" v-model="email">
+        <input type="text" placeholder="E-mail" v-model="email">
         <label>Password</label>
-        <input type="password" placeholder="E-mail address" v-model="password">
+        <input type="password" placeholder="password" v-model="password">
       </div>
       <button class="button" @click="register">Register</button>
       <br>

@@ -8,6 +8,7 @@ var { authenticate } = require('./../lib/auth');
 router.post('/', authenticate, QuestionController.create);
 router.get('/', QuestionController.find);
 router.get('/:id', QuestionController.findOne);
+router.delete('/:id', authenticate, QuestionController.destroy);
 router.post('/:id/upvote', authenticate, QuestionController.upvote);
 router.post('/:id/downvote', authenticate, QuestionController.downvote);
 

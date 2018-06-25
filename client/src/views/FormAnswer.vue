@@ -75,7 +75,7 @@ input[type=text] {
 }
 input[type=text]:focus {
   border: 3px solid #555;
-}
+} 
 .button {
   border: none;
   color: white;

@@ -93,6 +93,40 @@ const QuestionController = {
     })
   },
 
+  destroy(req, res) {
+    const id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+      return res.status(404).send({
+        status: 'error',
+        data: [],
+        message: 'not found',
+      });
+    }
+    Question.findOneAndRemove({
+      _id: id,
+      _creator: req.user._id,
+    }).then((question) => {
+      if (!question) {
+        return res.status(404).send({
+          status: 'error',
+          data: [],
+          message: 'not found',
+        });
+      }
+      res.status(200).send({
+        status: 'oke',
+        data: question,
+        message: [],
+      });
+    }).catch((e) => {
+      res.status(400).send({
+        status: 'error',
+        data: [],
+        message: e.message,
+      });
+    });
+  },
+
   upvote(req, res) {
     const id = req.params.id;
     if (!ObjectID.isValid(id)) {
